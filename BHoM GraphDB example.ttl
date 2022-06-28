@@ -1,0 +1,269 @@
+@prefix : <http://www.bhom.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@base   <http://www.bhom.org> .
+
+<www.bhom.org> rdf:type owl:Ontology;
+                          dc:title "buidling ontology"@en;
+                          dc:description " bhom ontology"@en.
+
+
+#################################################################
+#    Annotation Properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/#description
+<http://purl.org/dc/elements/1.1/#description> rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/elements/1.1/#title
+<http://purl.org/dc/elements/1.1/#title> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+### https://github.com/BHoM/RDF_Prototypes/commit/ff8ccb68dbba5aeadb4a9a284f141eb1515e169a
+:BH.oM.RDF.Base64JsonSerialized rdf:type rdfs:Datatype ;
+rdfs:label "Base64JsonSerialized"@en .
+# owl:equivalentClass xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+### https://github.com/BHoM/BHoM/blob/main/Architecture_oM/Elements/Room.cs
+:BH.oM.Architecture.Elements.Room rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Analytical.Elements.IRegion;
+		rdfs:subClassOf :BH.oM.Base.BHoMObject;
+		rdfs:label"Room"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/Interface/IBHoMObject.cs
+:BH.oM.Base.IBHoMObject rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Base.IObject;
+		rdfs:label"IBHoMObject"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/Interface/IObject.cs
+:BH.oM.Base.IObject rdf:type owl:Class;
+		rdfs:label"IObject"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Analytical_oM/Elements/IRegion.cs
+:BH.oM.Analytical.Elements.IRegion rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Base.IBHoMObject;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement2D;
+		rdfs:label"IRegion"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Dimensional_oM/IElement2D.cs
+:BH.oM.Dimensional.IElement2D rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement;
+		rdfs:label"IElement2D"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Dimensional_oM/IElement.cs
+:BH.oM.Dimensional.IElement rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Base.IObject;
+		rdfs:label"IElement"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs
+:BH.oM.Base.BHoMObject rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Base.IBHoMObject;
+		rdfs:label"BHoMObject"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Curve/ICurve.cs
+:BH.oM.Geometry.ICurve rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Geometry.IGeometry;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement1D;
+		rdfs:label"ICurve"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Interface/IGeometry.cs
+:BH.oM.Geometry.IGeometry rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Base.IObject;
+		rdfs:label"IGeometry"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Dimensional_oM/IElement1D.cs
+:BH.oM.Dimensional.IElement1D rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement;
+		rdfs:label"IElement1D"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Curve/Polyline.cs
+:BH.oM.Geometry.Polyline rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Geometry.ICurve;
+		rdfs:label"Polyline"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Curve/Polyline.cs#L38
+:BH.oM.ControlPointsList rdf:type owl:Class;
+		rdfs:subClassOf rdf:Seq;
+		rdfs:label"ControlPointsList"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Vector/Point.cs
+:BH.oM.Geometry.Point rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Geometry.IGeometry;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement0D;
+		rdfs:label"Point"@en .
+
+### https://github.com/BHoM/BHoM/blob/main/Dimensional_oM/IElement0D.cs
+:BH.oM.Dimensional.IElement0D rdf:type owl:Class;
+		rdfs:subClassOf :BH.oM.Dimensional.IElement;
+		rdfs:label"IElement0D"@en .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+
+### https://github.com/BHoM/BHoM/blob/main/Architecture_oM/Elements/Room.cs#L36
+:BH.oM.Architecture.Elements.Room.Perimeter rdf:type owl:ObjectProperty ;
+rdfs:domain :BH.oM.Architecture.Elements.Room ;
+rdfs:range :BH.oM.Geometry.ICurve ;
+rdfs:label "Perimeter (BH.oM.Architecture.Elements.Room.Perimeter)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Curve/Polyline.cs#L47
+:BH.oM.ControlPoints rdf:type owl:ObjectProperty ;
+rdfs:domain :BH.oM.Architecture.Elements.Room ;
+rdfs:range :BH.oM.ControlPointsList ;
+rdfs:label "Perimeter (BH.oM.ControlPoints)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Architecture_oM/Elements/Room.cs#L37
+:BH.oM.Architecture.Elements.Room.Location rdf:type owl:ObjectProperty ;
+rdfs:domain :BH.oM.Architecture.Elements.Room ;
+rdfs:range :BH.oM.Geometry.Point ;
+rdfs:label "Location (BH.oM.Architecture.Elements.Room.Location)"@en .
+
+
+
+### https://github.com/BHoM/BHoM/blob/main/Architecture_oM/Elements/Room.cs#L37
+:BH.oM.Architecture.Elements.Room.Location rdf:type owl:ObjectProperty ;
+rdfs:domain :BH.oM.Architecture.Elements.Room ;
+rdfs:range :BH.oM.Geometry.Point ;
+rdfs:label "Location (BH.oM.Architecture.Elements.Room.Location)"@en .
+
+
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Curve/Polyline.cs#L38
+#:BH.oM.Geometry.Polyline.ControlPoints rdf:type owl:ObjectProperty ;
+#rdfs:domain :BH.oM.Geometry.Polyline ;
+#rdfs:range :BH.oM.RDF.Base64JsonSerialized ;
+#rdfs:label "ControlPoints (BH.oM.Geometry.Polyline.ControlPoints)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Vector/Point.cs#L37
+:BH.oM.Geometry.Point.X rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Geometry.Point ;
+rdfs:range xsd:double ;
+rdfs:label "X (BH.oM.Geometry.Point.X)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Vector/Point.cs#L40
+:BH.oM.Geometry.Point.Y rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Geometry.Point ;
+rdfs:range xsd:double ;
+rdfs:label "Y (BH.oM.Geometry.Point.Y)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/Geometry_oM/Vector/Point.cs#L43
+:BH.oM.Geometry.Point.Z rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Geometry.Point ;
+rdfs:range xsd:double ;
+rdfs:label "Z (BH.oM.Geometry.Point.Z)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs#L34
+:BH.oM.Base.BHoMObject.BHoM_Guid rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Base.BHoMObject ;
+rdfs:range xsd:string ;
+rdfs:label "BHoM_Guid (BH.oM.Base.BHoMObject.BHoM_Guid)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs#L36
+:BH.oM.Base.BHoMObject.Name rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Base.BHoMObject ;
+rdfs:range xsd:string ;
+rdfs:label "Name (BH.oM.Base.BHoMObject.Name)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs#L38
+:BH.oM.Base.BHoMObject.Fragments rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Base.BHoMObject ;
+rdfs:range :BH.oM.RDF.Base64JsonSerialized ;
+rdfs:label "Fragments (BH.oM.Base.BHoMObject.Fragments)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs#L40
+:BH.oM.Base.BHoMObject.Tags rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Base.BHoMObject ;
+rdfs:range :BH.oM.RDF.Base64JsonSerialized ;
+rdfs:label "Tags (BH.oM.Base.BHoMObject.Tags)"@en .
+
+
+### https://github.com/BHoM/BHoM/blob/main/BHoM/BHoMObject.cs#L42
+:BH.oM.Base.BHoMObject.CustomData rdf:type owl:DatatypeProperty ;
+rdfs:domain :BH.oM.Base.BHoMObject ;
+rdfs:range :BH.oM.RDF.Base64JsonSerialized ;
+rdfs:label "CustomData (BH.oM.Base.BHoMObject.CustomData)"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+### http://www.uni-stuttgart.de/7c650451-9471-4696-9c42-97ac267b9264
+<http://www.uni-stuttgart.de/7c650451-9471-4696-9c42-97ac267b9264> rdf:type owl:NamedIndividual ,
+		:BH.oM.Architecture.Elements.Room ;
+		:BH.oM.Architecture.Elements.Room.Perimeter <http://www.uni-stuttgart.de/63744423> ;
+		:BH.oM.Base.BHoMObject.BHoM_Guid "7c650451-9471-4696-9c42-97ac267b9264"^^xsd:string.
+
+
+
+
+### http://www.uni-stuttgart.de/63744423
+<http://www.uni-stuttgart.de/63744423> rdf:type owl:NamedIndividual ,
+		:BH.oM.Geometry.Polyline ;
+		:BH.oM.Geometry.Polyline.ControlPoints <http://www.uni-stuttgart.de/6374442399>.
+
+
+### http://www.uni-stuttgart.de/6374442399
+<http://www.uni-stuttgart.de/6374442399> rdf:type owl:NamedIndividual,
+												:BH.oM.ControlPointsList;
+										 rdf:_0 <http://www.uni-stuttgart.de/494086135> ;
+										 rdf:_1 <http://www.uni-stuttgart.de/49408613510> ;
+										 rdf:_2 <http://www.uni-stuttgart.de/49408613520>.
+
+
+
+### http://www.uni-stuttgart.de/49408613501
+<http://www.uni-stuttgart.de/494086135> rdf:type owl:NamedIndividual ,
+		:BH.oM.Geometry.Point ;
+		:BH.oM.Geometry.Point.X "1"^^xsd:double;
+		:BH.oM.Geometry.Point.Y "1"^^xsd:double;
+		:BH.oM.Geometry.Point.Z "1"^^xsd:double.
+
+
+
+### http://www.uni-stuttgart.de/49408613510
+<http://www.uni-stuttgart.de/49408613510> rdf:type owl:NamedIndividual ,
+		:BH.oM.Geometry.Point ;
+		:BH.oM.Geometry.Point.X "10"^^xsd:double;
+		:BH.oM.Geometry.Point.Y "10"^^xsd:double;
+		:BH.oM.Geometry.Point.Z "10"^^xsd:double.
+
+
+### http://www.uni-stuttgart.de/49408613520
+<http://www.uni-stuttgart.de/49408613520> rdf:type owl:NamedIndividual ,
+		:BH.oM.Geometry.Point ;
+		:BH.oM.Geometry.Point.X "20"^^xsd:double;
+		:BH.oM.Geometry.Point.Y "20"^^xsd:double;
+		:BH.oM.Geometry.Point.Z "20"^^xsd:double.
